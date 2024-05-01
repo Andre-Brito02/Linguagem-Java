@@ -123,8 +123,8 @@ public class trabalhoLFA{
         int[][] matriz = new int[quantidadeDeEstados+1][quantidadeSimbolosAlfabeto];
 
         //preencher a matriz
-        for(int i = 0; i < quantidadeDeEstados+1; i++){
-            for(int j = 0, x = 0; j < quantidadeDeEstados; j++){
+        for(int i = 0; i < quantidadeDeEstados+1; i++){//For do tamanho dos estados + 1 
+            for(int j = 0, x = 0; j < quantidadeSimbolosAlfabeto; j++){//For do tamanho da quantidade de estados
                 if(i == 0){
                     matriz[i][j] = simbolos[x];
                     x++;
