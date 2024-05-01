@@ -12,7 +12,7 @@ public class trabalhoLFA{
         System.out.println("* Professor Guilherme Nakahata");
         System.out.println("* Aluno André Augusto Brito dos Santos");
         System.out.println("--------Automato Finito Determinístico--------");
-    }
+    }//função imprimeCabecalho
 
     //Criar uma função que verifica se a palavra em uma determinada posição(Variável proximoEstado) pertence a matriz de transição e armazena o proximo estado na variavel que gera um retorno
     public static int verificaEstado(int[][] matriz, int quantidadeSimbolosAlfabeto, int proximoEstado, String palavra, int rodaIndicePalavra, List<Integer> estados){
@@ -36,7 +36,7 @@ public class trabalhoLFA{
             }
 
             //se nao for verdade a condição do if e else if, não muda o valor do proximoEstado, sendo seu valor inicial seu retorno
-        }
+        }//for
 
         //Se teste sair como true, adiciona na lista o valor da variavel aux
         if(teste){
@@ -44,14 +44,14 @@ public class trabalhoLFA{
         //Se teste sair como false, adiciona -1 na lista, o que auxiliará se a palavra é aceita ou não
         }else{
             estados.add(-1);
-        }
+        }//else
 
         //Passa o valor da alteração de estado para a variavel proximoEstado que será retornada
         proximoEstado = aux;
 
         //retorna o valor da variavel proximoEstado
         return proximoEstado;
-    }
+    }//função verificaEstado
 
     //criar a função principal
     public static void main(String[] args){
@@ -90,7 +90,7 @@ public class trabalhoLFA{
         for(int i = 0; i < quantidadeSimbolosAlfabeto; i++){
             System.out.print("Digite o " + (i+1) + "° símbolo: ");
             simbolos[i] = sc.next().charAt(0);
-        }
+        }//for
 
         //Passa os valores para o construtor da classe
         LFA config = new LFA(estadoInicial, quantidadeDeEstados, quantidadeDeEstadoFinal, estadoFinal, quantidadeSimbolosAlfabeto, simbolos);
@@ -99,38 +99,38 @@ public class trabalhoLFA{
         System.out.println("===== TABELA DE TRANSIÇÃO =====");
         for(int i = 0; i < quantidadeDeEstados+1; i++){
             for(int j = 0, x = 0; j < quantidadeSimbolosAlfabeto+1; j++){
-                if (i == 0) {
-                    if(i == j){
+                if (i == 0) {//Para a primeira linha da matriz
+                    if(i == j){//Se i e j forem iguais a 0, imprime espaço
                         System.out.printf("%4c ", ' ');
-                    }else{
+                    }else{//Se i for igual a 0 e j diferente de i, imprime o valor armazenado em simbolos
                         System.out.printf("%4c ", simbolos[x]);
                         x++;
-                    }
+                    }//else
                 }//if i = 0
-
-                else if(j == 0){
+                //Para a primeira coluna
+                else if(j == 0){//Imprime Q1 e os demais variando o valor do quantidadeDeEstados para a primeira coluna
                     System.out.printf("%c%d%2c ", 'Q', i, ' ');
                 }// if j == 0
-
-                else{
+                //Para o resto da matriz
+                else{//Imprime o ã posição da matriz
                     System.out.printf("%2d,%d ", i, j);
-                }
+                }//else
             }//for j
-            System.out.println();
+            System.out.println();//Pula uma linha para imprimir no formato de matriz
         }//for i
 
         //criar uma matriz 5x4 que armazena na primeira linha os simbolos e no resto armazena os possiveis estados
         int[][] matriz = new int[quantidadeDeEstados+1][quantidadeSimbolosAlfabeto];
 
         //preencher a matriz
-        for(int i = 0; i < quantidadeDeEstados+1; i++){//For do tamanho dos estados + 1 
+        for(int i = 0; i < quantidadeDeEstados+1; i++){//For do tamanho dos estados + 1
             for(int j = 0, x = 0; j < quantidadeSimbolosAlfabeto; j++){//For do tamanho da quantidade de estados
-                if(i == 0){
-                    matriz[i][j] = simbolos[x];
-                    x++;
-                }else{
+                if(i == 0){//Para a primeira linha, passa os valores armazenados em simbolos
+                    matriz[i][j] = simbolos[x];//Armazena o valor na matriz
+                    x++;//aumenta o valor de x para pegar o simbolo da proxima posição
+                }else{//Para o resto da matriz, pega o valor da transição
                     System.out.print("Preencha a transição " + i + "," + (j+1) + ": ");
-                    matriz[i][j] = sc.nextInt();
+                    matriz[i][j] = sc.nextInt();//Armazena o valor na matriz
                 }//else
             }//for j
         }//for i
@@ -153,7 +153,7 @@ public class trabalhoLFA{
                     if(palavra.charAt(x) == matriz[x][j] && matriz[i][j] != -1){//Se a primeira letra da palavra estiver na primeira linha da matriz e na posição i e j for diferente de -1, armazena o valor da posição i,j da matriz na variavel proximoEstado, caso nao aconteça, a variavel continua com valor 0
                         config.setProximoEstado(matriz[i][j]);//Altera o valor da variavel criada na classe para o valor armazenado na posição determinada da matriz
                         config.setRodaIndicePalavra(1);//Altera o valor da variavel que roda os indices da palavra em 1
-                        estados.add(config.getProximoEstado());
+                        estados.add(config.getProximoEstado());//Adiciona o valor do primeiro estado para a lista se tiver o primeiro estado
                     }//if
                 }//for j
             }//for i
@@ -183,16 +183,16 @@ public class trabalhoLFA{
                     if(estados.get(i) == -1){
                         ultimaVerificacao = false;
                         break;
-                    }
+                    }//if
 
                     //Se não tiver um -1 na lista mas seu valor na ultima posição for diferente da variavel que define o estado final, muda o valorda variavel booleana para false
                     else if(estados.get(i) != -1 && estados.get(estados.size()-1) != estadoFinal){
                         ultimaVerificacao = false;
                         break;
-                    }
+                    }//else if
 
                     //Se não entrar no if/else if o valor da variavel booleana não sofre alteração e continua com seu valor inicial
-                }
+                }//for
 
                 //Se ao sair do ultimo for que seria a verificação da lista(estados) o valor da ultimaVerificacao for true a palavra é aceita
                 if(ultimaVerificacao){
@@ -200,7 +200,7 @@ public class trabalhoLFA{
                 //Caso contrário a palavra não é aceita
                 }else{
                     System.out.println("Palavra não aceita!");
-                }
+                }//else
 
                 //Volta para o valor inicial da variavel para testar a próxima palavra
                 config.setProximoEstado(0);
