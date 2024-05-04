@@ -69,7 +69,7 @@ public class trabalhoLFA{
         int quantidadeDeEstados = sc.nextInt();
 
         //Pegar o valor da quantidade de estados finais
-        System.out.print("Digite o a Quantidade de Estado(s) Final(is): ");
+        System.out.print("Digite a Quantidade de Estado(s) Final(is): ");
         int quantidadeDeEstadoFinal = sc.nextInt();
 
         //Pegar o valor do estado final
@@ -93,7 +93,7 @@ public class trabalhoLFA{
         }//for
 
         //Passa os valores para o construtor da classe
-        LFA config = new LFA(estadoInicial, quantidadeDeEstados, quantidadeDeEstadoFinal, estadoFinal, quantidadeSimbolosAlfabeto, simbolos);
+        LFA config = new LFA();
 
         //imprimir a tabela de Transição
         System.out.println("===== TABELA DE TRANSIÇÃO =====");
@@ -119,7 +119,7 @@ public class trabalhoLFA{
             System.out.println();//Pula uma linha para imprimir no formato de matriz
         }//for i
 
-        //criar uma matriz 5x4 que armazena na primeira linha os simbolos e no resto armazena os possiveis estados
+        //criar uma matriz linhas+1 X colunas que armazena na primeira linha os simbolos e no resto armazena os possiveis estados
         int[][] matriz = new int[quantidadeDeEstados+1][quantidadeSimbolosAlfabeto];
 
         //preencher a matriz

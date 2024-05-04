@@ -1,23 +1,11 @@
 package entities;
 //Classe criada para organizar melhor o código, deixando as variaveis basicas da configuração do LFA em um lugar que pouco usaria e deixaria o arquivo principal com os comandos do lfa(exibição, preenchimento e verificação)
 public class LFA {
-    private int estadoInicial;
-    private int quantidadeDeEstados;
-    private int quantidadeEstadoFinal;
-    private int estadoFinal;
-    private int quantidadeSimbolosAlfabeto;
-    private char[] simbolos;
     private int proximoEstado;
     private int rodaIndicePalavra;
 
     //Construtor para passar os valores do arquivo principal para os atributos da classe
-    public LFA(int estadoInicial, int quantidadeDeEstados, int quantidadeEstadoFinal, int estadoFinal, int quantidadeSimbolosAlfabeto, char[] simbolos) {
-        this.estadoInicial = estadoInicial;
-        this.quantidadeDeEstados = quantidadeDeEstados;
-        this.quantidadeEstadoFinal = quantidadeEstadoFinal;
-        this.estadoFinal = estadoFinal;
-        this.quantidadeSimbolosAlfabeto = quantidadeSimbolosAlfabeto;
-        this.simbolos = simbolos;
+    public LFA() {
         this.proximoEstado = 0;
         this.rodaIndicePalavra = 0;
     }
